@@ -5,10 +5,18 @@
  */
 package GUICalculator;
 
-/**
- *
- * @author 3pear
- */
-public class GUICalculator {
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+public class GUICalculator extends Application {
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
+    
+    public static void main(String[] args){
+        launch(args);
+    }
 }
