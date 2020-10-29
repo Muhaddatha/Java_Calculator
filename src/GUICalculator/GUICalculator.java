@@ -6,13 +6,20 @@
 package GUICalculator;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class GUICalculator extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Parent root = FXMLLoader.load(getClass().getResource("CalculatorFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setTitle("Calculator");
+        stage.setScene(scene);
+        stage.show();
     }
     
     
