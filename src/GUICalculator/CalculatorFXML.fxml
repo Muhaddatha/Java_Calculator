@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="397.0" prefWidth="242.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="GUICalculator.CalculatorFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="310.0" prefWidth="215.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUICalculator.CalculatorFXMLController">
    <children>
-      <Button fx:id="key1" layoutX="36.0" layoutY="169.0" mnemonicParsing="false" text="1" />
-      <Button fx:id="key2" layoutX="85.0" layoutY="169.0" mnemonicParsing="false" text="2" />
-      <Button fx:id="key4" layoutX="36.0" layoutY="217.0" mnemonicParsing="false" text="4" />
-      <Button fx:id="key3" layoutX="134.0" layoutY="169.0" mnemonicParsing="false" text="3" />
-      <Button fx:id="divisionButton" layoutX="171.0" layoutY="310.0" mnemonicParsing="false" text="/" />
-      <Button fx:id="multiplicationButton" layoutX="172.0" layoutY="260.0" mnemonicParsing="false" text="*" />
-      <Button fx:id="subtractionButton" layoutX="172.0" layoutY="217.0" mnemonicParsing="false" text="-" />
-      <Button fx:id="additionButton" layoutX="171.0" layoutY="169.0" mnemonicParsing="false" text="+" />
-      <Button fx:id="key9" layoutX="134.0" layoutY="260.0" mnemonicParsing="false" text="9" />
-      <Button fx:id="key8" layoutX="85.0" layoutY="260.0" mnemonicParsing="false" text="8" />
-      <Button fx:id="key7" layoutX="35.0" layoutY="260.0" mnemonicParsing="false" text="7" />
-      <Button fx:id="key6" layoutX="134.0" layoutY="217.0" mnemonicParsing="false" text="6" />
-      <Button fx:id="key5" layoutX="85.0" layoutY="217.0" mnemonicParsing="false" text="5" />
-      <Button fx:id="clearButton" layoutX="134.0" layoutY="310.0" mnemonicParsing="false" text="C" />
-      <Button fx:id="key0" layoutX="85.0" layoutY="307.0" mnemonicParsing="false" text="0" />
-      <Button fx:id="spaceButton" layoutX="172.0" layoutY="352.0" mnemonicParsing="false" text="_" />
-      <Button fx:id="calculateButton" layoutX="78.0" layoutY="352.0" mnemonicParsing="false" onAction="#calculateOperation" text="Calculate" />
-      <Label fx:id="calculationLabel" layoutX="32.0" layoutY="106.0" prefHeight="17.0" prefWidth="161.0" />
+      <Button fx:id="key1" layoutX="14.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="0.0" prefWidth="15.0" text="1" />
+      <Button fx:id="key2" layoutX="67.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleButtonAction" text="2" />
+      <Button fx:id="key4" layoutX="14.0" layoutY="119.0" mnemonicParsing="false" onAction="#handleButtonAction" text="4" />
+      <Button fx:id="key3" layoutX="112.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleButtonAction" text="3" />
+      <Button fx:id="divisionButton" layoutX="162.0" layoutY="226.0" mnemonicParsing="false" onAction="#handleButtonAction" text="/" />
+      <Button fx:id="multiplicationButton" layoutX="162.0" layoutY="176.0" mnemonicParsing="false" onAction="#handleButtonAction" text="*" />
+      <Button fx:id="subtractionButton" layoutX="162.0" layoutY="119.0" mnemonicParsing="false" onAction="#handleButtonAction" text="-" />
+      <Button fx:id="additionButton" layoutX="160.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleButtonAction" text="+" />
+      <Button fx:id="key9" layoutX="113.0" layoutY="176.0" mnemonicParsing="false" onAction="#handleButtonAction" text="9" />
+      <Button fx:id="key8" layoutX="67.0" layoutY="176.0" mnemonicParsing="false" onAction="#handleButtonAction" text="8" />
+      <Button fx:id="key7" layoutX="14.0" layoutY="176.0" mnemonicParsing="false" onAction="#handleButtonAction" text="7" />
+      <Button fx:id="key6" layoutX="113.0" layoutY="119.0" mnemonicParsing="false" onAction="#handleButtonAction" text="6" />
+      <Button fx:id="key5" layoutX="67.0" layoutY="119.0" mnemonicParsing="false" onAction="#handleButtonAction" text="5" />
+      <Button fx:id="clearButton" layoutX="113.0" layoutY="226.0" mnemonicParsing="false" onAction="#handleButtonAction" text="C" />
+      <Button fx:id="key0" layoutX="67.0" layoutY="226.0" mnemonicParsing="false" onAction="#handleButtonAction" text="0" />
+      <Button fx:id="spaceButton" layoutX="162.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleButtonAction" text="_" />
+      <Button fx:id="calculateButton" layoutX="58.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Calculate" />
+      <TextField alignment="CENTER_RIGHT" editable="false" layoutX="12.0" layoutY="14.0" prefHeight="25.0" prefWidth="192.0" text="0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

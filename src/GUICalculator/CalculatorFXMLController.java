@@ -54,8 +54,6 @@ public class CalculatorFXMLController implements Initializable {
     private Button spaceButton;
     @FXML
     private Button calculateButton;
-    @FXML
-    private Label calculationLabel;
 
     /**
      * Initializes the controller class.
@@ -66,7 +64,7 @@ public class CalculatorFXMLController implements Initializable {
     }    
 
     @FXML
-    private void calculateOperation(ActionEvent event) {
+    private void handleButtonAction(ActionEvent event) {
     }
     
 }
