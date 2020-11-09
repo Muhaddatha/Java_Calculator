@@ -61,6 +61,7 @@ public class CalculatorFXMLController implements Initializable {
 
     
     boolean debugging = true;
+    boolean finishedCalculation = false;
     
     @FXML
     private TextField displayWindow; //This is where the user can see the operation
@@ -77,6 +78,10 @@ public class CalculatorFXMLController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
    
         displayWindow.setStyle("-fx-text-fill: black; -fx-font-size: 16px");
+        if(finishedCalculation){
+            displayWindow.clear();
+            finishedCalculation = false;
+        }
         
         if(event.getSource() == key1){
             displayWindow.setText(displayWindow.getText() + "1");
@@ -146,6 +151,7 @@ public class CalculatorFXMLController implements Initializable {
             if(debugging){System.out.println("Calculate button clicked!");}
             calculatePostFix(displayWindow.getText());
             displayWindow.setAlignment(Pos.CENTER_RIGHT);
+            finishedCalculation = true;
             
         }
     }
@@ -243,6 +249,9 @@ public class CalculatorFXMLController implements Initializable {
         }
         
         displayWindow.clear();
+        
+        myStack.clear();
+        if(debugging){System.out.println("Emptied stack! (since operation is over)");}
                 
         String resultString;
         int intPartOfResultOfOperation = (int) resultOfOperation;
