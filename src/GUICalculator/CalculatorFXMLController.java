@@ -5,11 +5,14 @@
  */
 package GUICalculator;
 
+import static java.lang.Character.getNumericValue;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Stack;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -73,6 +76,8 @@ public class CalculatorFXMLController implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) {
    
+        displayWindow.setStyle("-fx-text-fill: black; -fx-font-size: 16px");
+        
         if(event.getSource() == key1){
             displayWindow.setText(displayWindow.getText() + "1");
             if(debugging){System.out.println("Button 1 clicked!");}
@@ -137,6 +142,123 @@ public class CalculatorFXMLController implements Initializable {
              displayWindow.setText(displayWindow.getText() + " ");
             if(debugging){System.out.println("Button space clicked!");}
         }
+        else if(event.getSource() == calculateButton){
+            if(debugging){System.out.println("Calculate button clicked!");}
+            calculatePostFix(displayWindow.getText());
+            displayWindow.setAlignment(Pos.CENTER_RIGHT);
+            
+        }
+    }
+    
+    private void calculatePostFix(String postFixOperation){
+         //step1: get rid of white spaces in postFixOperation
+        //step2: check if string is empty
+        //step 3: 
+        //String[] operand = {};
+        
+        if (debugging){ 
+            System.out.println("calculatePostFix function called!"); 
+        }
+        
+        if(postFixOperation.isEmpty()){
+            if(debugging) { 
+                System.out.println("No operation to calculate is specified.");
+            }
+            return;
+        }
+        
+        Stack<Double> myStack = new Stack<>();
+        
+        double resultOfOperation = 0;
+        
+        for(int i = 0; i < postFixOperation.length(); i++){
+            
+            double operand = getNumericValue(postFixOperation.charAt(i));
+            
+           if(getNumericValue(postFixOperation.charAt(0)) == -1){
+               displayWindow.setAlignment(Pos.CENTER_LEFT);
+               displayWindow.setStyle("-fx-text-fill: red; -fx-font-size: 10px");
+               displayWindow.setText("ERROR: not a postifx expression.");
+               return;
+               
+           }
+            
+            if(debugging){
+                System.out.println("\tThe value being scanned is: " + postFixOperation.charAt(i)
+                + " and its numeric value is " + operand);
+            }
+            if(operand >= 0 && operand <= 9){
+                myStack.push(operand);
+                if(debugging){ System.out.println("\tNew value enterred stack: " + operand); }
+            }
+            else{
+                Double x = myStack.pop();
+                
+                Double y = myStack.pop();
+              
+                if(debugging){System.out.println("\tThe two top elements are " + x + " and " + y);}
+                
+                switch (postFixOperation.charAt(i)) {
+                    case '+':
+                        //calculate addition
+                        if(debugging){System.out.println("\tCalculating addition of " + x + " and " +
+                                y + ". \n\tPushing " + (y + x) + " into the stack.");}
+                        myStack.push(y + x);
+                        resultOfOperation = y + x;
+                        break;
+                    case '-':
+                        if(debugging){System.out.println("\tCalculating subtraction of " + x + " and " +
+                                y + ". \n\tPushing " + (y - x) + " into the stack.");}
+                        myStack.push(y - x);
+                        resultOfOperation = y - x;
+                        break;
+                    case '/':
+                        if(x == 0){
+                            if(debugging) {System.out.println("\tERROR: Division by zero!");}
+                            displayWindow.setStyle("-fx-text-fill: red; -fx-font-size: 10px");
+                            displayWindow.setAlignment(Pos.CENTER_LEFT);
+                            displayWindow.setText("ERROR: DIVISION BY ZERO");
+                            return;
+                        }
+                        else{
+                            if(debugging){System.out.println("\tCalculating division of " + x + " and " +
+                                y + ". \n\tPushing " + (y / x) + " into the stack.");}
+                            myStack.push(y / x);
+                            resultOfOperation = y / x;
+                        }   break;
+                    case '*':
+                        if(debugging){System.out.println("\tCalculating multiplation of " + x + " and " +
+                                y + ". \n\tPushing " + (y * x) + " into the stack.");}
+                        myStack.push(y * x);
+                        resultOfOperation = y * x;
+                        break;
+                    default:
+                        break;
+                }
+                
+                
+            }
+            
+           
+        }
+        
+        displayWindow.clear();
+                
+        String resultString;
+        int intPartOfResultOfOperation = (int) resultOfOperation;
+        if((resultOfOperation - intPartOfResultOfOperation) == 0 ){
+            //if the number iss whole and not a fraction
+            resultString = String.valueOf(intPartOfResultOfOperation);
+        }
+        else{
+            //the result of the operation is a decimal number\
+            resultString = String.valueOf(resultOfOperation);
+        }
+                
+        displayWindow.setText(resultString);
+        return;
+       
+        
     }
     
     
